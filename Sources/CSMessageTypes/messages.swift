@@ -48,11 +48,11 @@ public enum WebsocketSeverity: String, Codable, Sendable {
 
 public struct WebsocketNotification: Message {
     public static let urlPath: String = "notification"
-    let userId: UUID
-    let title: String
-    let content: String
-    let severity: WebsocketSeverity
-    let sessionId: String
+    public let userId: UUID
+    public let title: String
+    public let content: String
+    public let severity: WebsocketSeverity
+    public let sessionId: String
     
     public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String) {
         self.userId = userId
@@ -65,11 +65,11 @@ public struct WebsocketNotification: Message {
 
 public struct WebsocketTextMessage: Message {
     public static let urlPath: String = "message/text"
-    let userId: UUID
-    let title: String
-    let content: String
-    let severity: WebsocketSeverity
-    let sessionId: String
+    public let userId: UUID
+    public let title: String
+    public let content: String
+    public let severity: WebsocketSeverity
+    public let sessionId: String
     
     public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String) {
         self.userId = userId
@@ -82,9 +82,9 @@ public struct WebsocketTextMessage: Message {
 
 public struct WebsocketProgress: Message {
     public static let urlPath: String = "message/text"
-    let userId: UUID
-    let progress: Double
-    let sessionId: String
+    public let userId: UUID
+    public let progress: Double
+    public let sessionId: String
     
     public init(userId: UUID, progress: Double, sessionId: String) {
         self.userId = userId
