@@ -11,6 +11,14 @@ public struct MessageCenter {
     let userId: UUID
     let messageCenterHost: String?
     let app: Application
+    let sessionId: String
+    
+    public init(userId: UUID, messageCenterHost: String?, app: Application, sessionId: String) {
+        self.userId = userId
+        self.messageCenterHost = messageCenterHost
+        self.app = app
+        self.sessionId = sessionId
+    }
     
     public func sendNotification(
         title: String,
@@ -23,6 +31,7 @@ public struct MessageCenter {
             title: title,
             content: content,
             severity: severity,
+            sessionId: sessionId,
             progress: progress
         ).send(app: app, messageCenterHost: messageCenterHost)
     }
@@ -36,12 +45,12 @@ public struct MessageCenter {
             userId: userId,
             title: title,
             content: content,
-            severity: severity
+            severity: severity,
+            sessionId: sessionId
         ).send(app: app, messageCenterHost: messageCenterHost)
     }
     public func sendProgress(
-        progress: Double,
-        sessionId: String,
+        progress: Double
     ) async {
         await WebsocketProgress(
             userId: userId,
