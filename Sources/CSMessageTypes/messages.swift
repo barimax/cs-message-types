@@ -81,7 +81,7 @@ public struct WebsocketTextMessage: Message {
 }
 
 public struct WebsocketProgress: Message {
-    public static let urlPath: String = "message/text"
+    public static let urlPath: String = "progress"
     public let userId: UUID
     public let progress: Double
     public let sessionId: String
