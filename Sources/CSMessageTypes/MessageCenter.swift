@@ -7,7 +7,7 @@
 import Foundation
 import Vapor
 
-public struct MessageCenter {
+public struct MessageCenter: Sendable {
     let userId: UUID
     let messageCenterHost: String?
     let app: Application
