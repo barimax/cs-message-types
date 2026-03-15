@@ -7,12 +7,12 @@
 import Foundation
 import Vapor
 
-struct MessageCenter {
+public struct MessageCenter {
     let userId: UUID
     let messageCenterHost: String?
     let app: Application
     
-    func sendNotification(
+    public func sendNotification(
         title: String,
         content: String,
         severity: WebsocketSeverity = .info,
@@ -27,7 +27,7 @@ struct MessageCenter {
         ).send(app: app, messageCenterHost: messageCenterHost)
     }
     
-    func sendTextMessage(
+    public func sendTextMessage(
         title: String,
         content: String,
         severity: WebsocketSeverity = .info,
@@ -39,7 +39,7 @@ struct MessageCenter {
             severity: severity
         ).send(app: app, messageCenterHost: messageCenterHost)
     }
-    func sendProgress(
+    public func sendProgress(
         progress: Double,
         sessionId: String,
     ) async {

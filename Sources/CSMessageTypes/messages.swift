@@ -14,12 +14,12 @@
 import Foundation
 import Vapor
 
-protocol Message: Content {
+public protocol Message: Content {
     static var urlPath: String { get }
     func send(app: Application, messageCenterHost: String?) async
 }
 
-extension Message {
+public extension Message {
     func send(app: Application, messageCenterHost: String?) async {
         if messageCenterHost != nil {
             do {
@@ -47,14 +47,14 @@ public enum WebsocketSeverity: String, Codable, Sendable {
 }
 
 public struct WebsocketNotification: Message {
-    static let urlPath: String = "notification"
+    public static let urlPath: String = "notification"
     let userId: UUID
     let title: String
     let content: String
     let severity: WebsocketSeverity
     let progress: Double?
     
-    init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, progress: Double?) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, progress: Double?) {
         self.userId = userId
         self.title = title
         self.content = content
@@ -64,7 +64,7 @@ public struct WebsocketNotification: Message {
 }
 
 public struct WebsocketTextMessage: Message {
-    static let urlPath: String = "message/text"
+    public static let urlPath: String = "message/text"
     let userId: UUID
     let title: String
     let content: String
@@ -72,7 +72,7 @@ public struct WebsocketTextMessage: Message {
 }
 
 public struct WebsocketProgress: Message {
-    static let urlPath: String = "message/text"
+    public static let urlPath: String = "message/text"
     let userId: UUID
     let progress: Double
     let sessionId: String
