@@ -23,16 +23,14 @@ public struct MessageCenter: Sendable {
     public func sendNotification(
         title: String,
         content: String,
-        severity: WebsocketSeverity = .info,
-        progress: Double? = nil
+        severity: WebsocketSeverity = .info
     ) async {
         await WebsocketNotification(
             userId: userId,
             title: title,
             content: content,
             severity: severity,
-            sessionId: sessionId,
-            progress: progress
+            sessionId: sessionId
         ).send(app: app, messageCenterHost: messageCenterHost)
     }
     

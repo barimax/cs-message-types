@@ -52,15 +52,13 @@ struct WebsocketNotification: Message {
     let title: String
     let content: String
     let severity: WebsocketSeverity
-    let progress: Double?
     let sessionId: String
     
-    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String, progress: Double?) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String) {
         self.userId = userId
         self.title = title
         self.content = content
         self.severity = severity
-        self.progress = progress
         self.sessionId = sessionId
     }
 }
