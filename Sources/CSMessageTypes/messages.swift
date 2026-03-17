@@ -29,10 +29,14 @@ extension Message {
                     app.logger.error(.init(stringLiteral: (try? response.content.decode(String.self, as: .plainText)) ?? "Unknown error"))
                 }else if response.status == .ok {
                     app.logger.info("Message sent")
+                }else if response.status == .notFound {
+                    app.logger.warning("Company not found")
                 }
             }catch{
-                
+                app.logger.error(.init(stringLiteral: error.localizedDescription))
             }
+        }else{
+            app.logger.error(.init(stringLiteral: "Missing message center host."))
         }
     }
 
