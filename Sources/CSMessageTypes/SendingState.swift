@@ -7,8 +7,8 @@
 import Vapor
 import Foundation
 
-enum SendingState: AsyncResponseEncodable {
-    func encodeResponse(for request: Vapor.Request) async throws -> Vapor.Response {
+public enum SendingState: AsyncResponseEncodable {
+    public func encodeResponse(for request: Vapor.Request) async throws -> Vapor.Response {
         switch self {
         case .notFound:
             return .init(status: .notFound)
