@@ -43,7 +43,7 @@ extension Message {
 }
 
 public enum WebsocketSeverity: String, Codable, Sendable {
-    static let name: String = "WebsocketMessageSeverity"
+    public static let name: String = "WebsocketMessageSeverity"
     case info
     case warning
     case error
