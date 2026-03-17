@@ -11,10 +11,10 @@ public struct MessageCenter: Sendable {
     let userId: UUID
     let messageCenterHost: String?
     let app: Application
-    let sessionId: String
+    let sessionId: UUID
     let companyId: UUID?
     
-    public init(userId: UUID, messageCenterHost: String?, app: Application, sessionId: String, companyId: UUID?) {
+    public init(userId: UUID, messageCenterHost: String?, app: Application, sessionId: UUID, companyId: UUID?) {
         self.userId = userId
         self.messageCenterHost = messageCenterHost
         self.app = app

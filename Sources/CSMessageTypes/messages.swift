@@ -60,10 +60,10 @@ public struct WebsocketNotification: Message, WebsocketContainerEncodable {
     public let title: String
     public let content: String
     public let severity: WebsocketSeverity
-    public let sessionId: String
+    public let sessionId: UUID
     public let companyId: UUID?
     
-    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String, companyId: UUID?) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: UUID, companyId: UUID?) {
         self.userId = userId
         self.title = title
         self.content = content
@@ -83,10 +83,10 @@ public struct WebsocketTextMessage: Message, WebsocketContainerEncodable {
     public let title: String
     public let content: String
     public let severity: WebsocketSeverity
-    public let sessionId: String
+    public let sessionId: UUID
     public let companyId: UUID?
     
-    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String, companyId: UUID?) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: UUID, companyId: UUID?) {
         self.userId = userId
         self.title = title
         self.content = content
@@ -104,10 +104,10 @@ public struct WebsocketProgress: Message, WebsocketContainerEncodable {
     public static let urlPath: String = "progress"
     public let userId: UUID
     public let progress: Double
-    public let sessionId: String
+    public let sessionId: UUID
     public let companyId: UUID?
     
-    public init(userId: UUID, progress: Double, sessionId: String, companyId: UUID?) {
+    public init(userId: UUID, progress: Double, sessionId: UUID, companyId: UUID?) {
         self.userId = userId
         self.progress = progress
         self.sessionId = sessionId
@@ -136,7 +136,7 @@ public struct WebsocketContainer: Content {
     public let title: String? // message and notification only
     public let content: String? // message and notification only
     public let severity: WebsocketSeverity
-    public let sessionId: String
+    public let sessionId: UUID
     public let companyId: UUID?
     public let progress: Double?  // progress only
     public let type: WebsocketMessageType? // message only
