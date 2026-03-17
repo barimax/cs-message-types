@@ -15,7 +15,7 @@ import Foundation
 import Vapor
 
 protocol Message: Content {
-    static var urlPath: (String?, String) { get }
+    static var urlPath: String { get }
     func send(app: Application, messageCenterHost: String?) async
 }
 
@@ -23,9 +23,7 @@ extension Message {
     func send(app: Application, messageCenterHost: String?) async {
         if messageCenterHost != nil {
             do {
-                let (group, path) = Self.urlPath
-                let urlPath = group == nil ? path : "\(group!)/\(path)"
-                let url: URI = "http://\(messageCenterHost!)/\(urlPath)"
+                let url: URI = "http://\(messageCenterHost!)/\(Self.urlPath)"
                 let response =  try await app.client.post(url, content: self)
                 if response.status.code == 509 {
                     app.logger.error(.init(stringLiteral: (try? response.content.decode(String.self, as: .plainText)) ?? "Unknown error"))
@@ -49,7 +47,7 @@ public enum WebsocketSeverity: String, Codable, Sendable {
 }
 
 public struct WebsocketNotification: Message {
-    public static let urlPath: (String?, String) = (nil, "notification")
+    public static let urlPath: String = "notification"
     public let userId: UUID
     public let title: String
     public let content: String
@@ -66,7 +64,7 @@ public struct WebsocketNotification: Message {
 }
 
 public struct WebsocketTextMessage: Message {
-    public static let urlPath: (String?, String) = ("message", "text")
+    public static let urlPath: String = "message/text"
     public let userId: UUID
     public let title: String
     public let content: String
@@ -83,7 +81,7 @@ public struct WebsocketTextMessage: Message {
 }
 
 public struct WebsocketProgress: Message {
-    public static let urlPath: (String?, String) = (nil, "progress")
+    public static let urlPath: String = "progress"
     public let userId: UUID
     public let progress: Double
     public let sessionId: String
