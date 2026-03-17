@@ -53,13 +53,15 @@ public struct WebsocketNotification: Message {
     public let content: String
     public let severity: WebsocketSeverity
     public let sessionId: String
+    public let companyId: UUID?
     
-    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String, companyId: UUID?) {
         self.userId = userId
         self.title = title
         self.content = content
         self.severity = severity
         self.sessionId = sessionId
+        self.companyId = companyId
     }
 }
 
@@ -70,13 +72,15 @@ public struct WebsocketTextMessage: Message {
     public let content: String
     public let severity: WebsocketSeverity
     public let sessionId: String
+    public let companyId: UUID?
     
-    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String) {
+    public init(userId: UUID, title: String, content: String, severity: WebsocketSeverity, sessionId: String, companyId: UUID?) {
         self.userId = userId
         self.title = title
         self.content = content
         self.severity = severity
         self.sessionId = sessionId
+        self.companyId = companyId
     }
 }
 
@@ -85,10 +89,12 @@ public struct WebsocketProgress: Message {
     public let userId: UUID
     public let progress: Double
     public let sessionId: String
+    public let companyId: UUID?
     
-    public init(userId: UUID, progress: Double, sessionId: String) {
+    public init(userId: UUID, progress: Double, sessionId: String, companyId: UUID?) {
         self.userId = userId
         self.progress = progress
         self.sessionId = sessionId
+        self.companyId = companyId
     }
 }
